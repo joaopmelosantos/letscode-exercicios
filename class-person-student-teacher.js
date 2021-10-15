@@ -5,9 +5,7 @@ class Person {
       (this.age = age),
       (this.gender = gender),
       (this.interests = interests),
-      (this.bio = `${this.firstName} ${this.lastName} is ${
-        this.age
-      } years old. They like ${this.interests.join(', ')}`)
+      (this.bio = `${this.firstName} ${this.lastName} is ${this.age} years old. They like ${this.interests.join(', ')}`)
   }
   greeting() {
     return `Hi! I'm ${this.firstName} ${this.lastName}`
