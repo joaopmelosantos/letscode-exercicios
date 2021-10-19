@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>calculadora</h1>
+  <p>Selecione o operador</p>
+  <div class="operators">
+  <select name="operators">
+    <option value="+">(+) Soma</option>
+    <option value="-">(-) Subtração</option>
+    <option value="x">(x) Multiplicação</option>
+    <option value="÷">(÷) Divisão</option>
+  </select>
+  </div>
+  <p>Digite o número:</p>
+  <input type="text">
+  <button onclick="enter()">Enter</button>
+  <button onclick="equals()">Igual =</button>
+  <p class="result"></p>
+  <script>
+    let numbers = []
+    function getValue(){
+      return document.querySelector('input[type="text"]').value
+    }
+    function clearValue(){
+      return document.querySelector('input[type="text"]').value = '' 
+    }
+    function enter(){
+      if(numbers.length > 1){
+        alert('Só é possível adicionar até 2 números')
+        clearValue()
+      } else {
+      numbers.push(+(getValue()))
+      alert('Número adicionado com sucesso!')
+      clearValue()
+      } 
+    }
+    function getOperator(){
+      const arrayOfOperators = document.querySelectorAll('select[name="operators"] option')
+      let selectedOperator
+      arrayOfOperators.forEach(op => op.selected ? selectedOperator = op.value : selectedOperator)
+      return selectedOperator
+    }
+    const operators = {
+      '+': (number1, number2) => number1 + number2,
+      '-': (number1, number2) => number1 - number2,
+      'x': (number1, number2) => number1 * number2,
+      '÷': (number1, number2) => number2 != 0 ? number1 / number2 : 'Not possible to divide per 0'
+    }
+    function equals(){
+      if(numbers.length === 2){
+      const result = operators[getOperator()](numbers[0], numbers[1])
+      numbers = []
+      return document.querySelector('.result').innerHTML = `Resultado: ${result}`
+      } else {
+        alert('Quantidade de números insuficientes ou valor inválido!')
+      }
+    }
+  </script>
+</body>
+</html>
