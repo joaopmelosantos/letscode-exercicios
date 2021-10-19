@@ -4,6 +4,34 @@ Atividade proposta no curso Santander Coders | Web Full-Stack Degree realizado n
 
 Atividade realizada por: [Cássia Martinelli](https://github.com/cmartinellicm), [João Paulo](https://github.com/joaopmelosantos), [Leonardo Lins](https://github.com/LinsLeonardo) e [Rafael Oliveira](https://github.com/Rafess)
 
+## Class Person-Teacher-Student
+_class-person-teacher-student.js_
+
+* Criada uma classe `Person` com as propriedades/métodos a seguir:
+    * Name[firstName, lastName]
+    * Age
+    * Gender
+    * Interests
+    * Bio{"[Name] is [Age] years old. They like [interests]."}
+    * Greeting() {"Hi! I'm [Name]"}
+
+* Criada uma classe `Teacher` a partir da classe `Person` por herança com as propriedades/métodos a seguir:
+    * Name[firstName, lastName]
+    * Age
+    * Gender
+    * Interests
+    * Bio{"[Name] is [Age] years old. They like [interests]."}
+    * Subject
+    * Greeting() {"Hello. My name is [lastName], and I teach [subject]"}
+
+* Criada uma classe `Student` a partir da classe `Person` por herança com as propriedades/métodos a seguir:
+    * Name[firstName, lastName]
+    * Age
+    * Gender
+    * Interests
+    * Bio{"[Name] is [Age] years old. They like [interests]."}
+    * Greeting() {"Yo! I'm [firstName]"}
+
 ## The Reading List
 
 _Uma lista de livros orientada a objeto_
