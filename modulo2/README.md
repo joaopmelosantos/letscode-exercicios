@@ -1,4 +1,4 @@
-# Exercícios Santander Coders (Módulos 2 e 3)
+# Exercícios Santander Coders (Módulos 2)
 
 Atividades propostas no curso Santander Coders | Web Full-Stack Degree realizado na [Let's Code](https://www.letscode.com.br/). Exercícios de fixação em JavaScript envolvendo Higher-Order Functions, Module Pattern, Programação Orientada a Objeto, Classes, Herança e Polimorfismo.
 
