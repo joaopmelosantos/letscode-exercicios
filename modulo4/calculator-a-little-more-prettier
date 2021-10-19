@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+        body          {
+          background: #0d135f;
+          padding-top: 30px;
+        }
+        .calculator   {
+          max-width: 400px;
+          margin: 15px auto;
+          border: 2px solid #111;
+          border-radius: 5px;
+          background-color: white;
+        }
+        .calc-button  {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #111;
+            padding: 20px;
+            color: #EEE;
+            border-radius: 5px;
+            font-size: 22px; 
+            cursor: pointer;
+        
+        }
+        .calculator input   {
+          background: none;
+          border: none;
+          box-shadow: none;
+          outline: none;
+
+          padding: 10px;
+          width: 100%;
+          border-bottom: 2px solid #111;
+          color: #333;
+          text-align: right;
+          font-size: 40px;
+          border-radius: 0;
+        }
+
+        .calculator-buttons {
+          padding: 20px;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          grid-gap: 15px;
+        }
+
+        .is-zero,
+        .is-clear   {
+          grid-column: span 3;
+        }
+
+        .is-equals {
+          background: #28D060;
+        }
+        .is-clear   {
+          background: #3572DB;
+        }
+        h1{
+          text-align: center;
+          color: white;
+          font: 700 36px Sans, sans-serif;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Calculadora</h1>
+    <div class="calculator">
+      <input class="screen" type="text">
+        <div class="calculator-buttons">
+          <button class="calc-button is-clear" onclick="limpar()">C</button>
+          <button class="calc-button operator" onclick="enter(this)">÷</button>        
+          <button class="calc-button" onclick="enter(this)">7</button>
+          <button class="calc-button" onclick="enter(this)">8</button>
+          <button class="calc-button" onclick="enter(this)">9</button>
+          <button class="calc-button operator" onclick="enter(this)">x</button>        
+          <button class="calc-button" onclick="enter(this)">4</button>
+          <button class="calc-button" onclick="enter(this)">5</button>
+          <button class="calc-button" onclick="enter(this)">6</button>
+          <button class="calc-button operator" onclick="enter(this)">-</button>        
+          <button class="calc-button" onclick="enter(this)">1</button>
+          <button class="calc-button" onclick="enter(this)">2</button>
+          <button class="calc-button" onclick="enter(this)">3</button>
+          <button class="calc-button operator" onclick="enter(this)">&plus;</button>        
+          <button class="calc-button is-zero" onclick="enter(this)">0</button>
+          <button class="calc-button is-equals" onclick="equals()">&equals;</button>
+        </div>
+        <script>
+             function enter(element) {
+              const inputText = calcScreen()
+              inputText.value += element.innerHTML
+              }
+
+              function limpar() {
+                const inputText = calcScreen()
+                return (inputText.value = '')
+              }
+
+              function equals() {
+                const operator = chooseOperator()
+                let inputText = calcScreen()
+                let numbers = inputText.value.split(operator)
+                const result = calculate(numbers[0], numbers[1], operator).toString()
+                inputText.value = result
+              }
+
+              function calcScreen() {
+                return document.querySelector('.screen')
+              }
+
+              function getSelectedOperator() {
+                let opBtb = calcScreen().value.split('')
+                let selectedOperator = opBtb.filter(op => ['+', '-', 'x', '÷'].includes(op))[0]
+                return selectedOperator
+              }
+
+              function calculate(num1, num2, operator) {
+                return operators[operator](+num1, +num2)
+              }
+
+              function equals() {
+                const operator = getSelectedOperator()
+                let inputText = calcScreen()
+                let numbers = inputText.value.split(operator)
+                const result = calculate(numbers[0], numbers[1], operator).toString()
+                inputText.value = result
+              }
+
+              let operators = {
+                '+': (n1, n2) => n1 + n2,
+                '-': (n1, n2) => n1 - n2,
+                'x': (n1, n2) => n1 * n2,
+                '÷': (n1, n2) => n1 / n2
+              }
+        </script>
+  </body>
+</html>
