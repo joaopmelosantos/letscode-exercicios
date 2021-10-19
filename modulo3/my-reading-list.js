@@ -30,19 +30,12 @@ class BookList {
   updateBookList(){
     this.countBooks()
     this.orderBookList()
-    this.messageToUsers()
   }
 
   countBooks(){
     this.numReadBooks = this.allBooks.reduce((acc,current)=>current.read ? acc+=1 : acc, 0)
     this.numUnreadBooks = this.allBooks.length - this.numReadBooks
     console.log(`Há ${this.numReadBooks} livro(s) lidos e ${this.numUnreadBooks} livro(s) não lidos na lista`)
-  }
-
-  messageToUsers(){
-    console.log('Livro que está lendo: ' + (typeof this.currentBook === 'object' ? this.currentBook.title : 'Você não está lendo livros atualmente'))
-    console.log('Último Livro lido: ' + (typeof this.lastBookReaded === 'object' ? this.lastBookReaded.title : 'Você ainda não terminou de ler livros'))
-    console.log('Próximo Livro: ' + (typeof this.nextBook === 'object' ? this.nextBook.title : 'Você ainda não tem próximos livros para ler'))
   }
 
   orderBookList(){
