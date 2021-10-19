@@ -23,21 +23,14 @@ _Uma lista de livros orientada a objeto_
 *   Cada **Booklist** possui os seguintes métodos:
     * .countBooks() _- privado_
       * Conta quantidade de livros lidos e não lidos
-  	* .defineNextBook() _- privado_
-    	* Determina qual será o próximo a ser lido
-  	* handleReadBooks(book) _- privado_
-    	* Verifica se livro já foi lido e data de leitura e, caso necessário, atualiza o último livro que foi lido
-  	* .defineCurrentBook(book) _- privado_
-    	* Atualiza livro que está sendo lido no momento
-  	* .rearrangeBooks() _- privado_
-    	* Remaneja os livros após finalização de um `currentBook`
-  	* .validateBook(book) _- privado_
-    	* Verifica se o livro **book** cumpre os requisitos para ser inserido na lista de livros
+  	* .sortBookList() _- privado_
+    	* Organiza a lista de livros, definindo o currentBook, o lastBookReaded e o nextBook
+  	* .updateBookList() _- privado_
+    	* Atualiza as informações do BookList ao adicionar ou finalizar um livro
   	* .addBook(book)
     	* Adiciona o **book** na BookList
   	* .finishCurrentBook()
     	* Marca o `currentBook` como lido e atualiza sua data de leitura `readDate`
-    	* Remaneja os livros `lastBookRead`, `currentBook` e `nextBook` chamando o método `.rearrangeBooks()`
 *   Cada **Book** possui as seguintes propriedades:
 	*   Título `title`
 	*   Gênero `genre`
@@ -45,7 +38,7 @@ _Uma lista de livros orientada a objeto_
 	*   Livro lido `read` (true or false)
 	*   Data de leitura `readDate`, em branco para livros não lidos, e com data de leitura para livros lidos
 *   Cada **Book** possui o seguinte método:
-    * .setDate(date)
+    * .setDate(date) _- privado_
       * Verifica se foi inserida uma data de leitura `readDate` e, caso necessário, atualiza com a data atual
 
 ### Usando a aplicação
