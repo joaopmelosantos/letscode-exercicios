@@ -21,3 +21,22 @@ _Calculadora Simples no Navegador_
 *  Digite o segundo número;
 *  Clique no botão "Enter";
 *  Clique no botão "Igual =";
+
+## User List
+
+_Cadastro simples de usuários com o poder de remoção_
+
+### Elementos
+
+*   Um input do tipo "text"
+*   Um button com o nome "ok";
+*   Um unumbered list ("ul")
+*   Itens ("li") contendo um texto e um button com o nome "Remove"
+
+### Procedimento
+
+*  Digite o texto dentro do input;
+*  Clique no botão "ok" ou aperte a tecla "Enter"
+*  Clique no botão "Enter";
+*  Irá aparecer um novo item "li" com o texto que digitou, seguido de um botão com nome "Remove"
+*  Clique no botão "Remove" para retirar o item "li" desejado;
