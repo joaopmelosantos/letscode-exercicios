@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Usuários</title>
+</head>
+<body>
+  <h1>Cadastro de Usuários</h1>
+  <form>
+    <input type="text">
+    <button type="submit">OK</button>
+  </form>
+  <section>
+    <h2>Lista de usuários</h2>
+    <ul>
+
+    </ul>
+  </section>
+  <script>
+    function getInput(){ 
+      return document.querySelector('input[type="text"]') 
+    }
+
+    const form = document.querySelector('form')
+
+    const okButton = document.querySelector('button[type="submit"]')
+
+    form.addEventListener( 'submit', (event) => event.preventDefault())
+
+    okButton.onclick = () => {
+      createUser(getInput().value)
+      clearInput()
+    }
+
+    function createUser(username){
+      const userList = document.querySelector('ul')
+      const user = document.createElement('li')
+      user.innerText = username + ' '
+      userList.appendChild(user)
+      createRemoveButton(user)
+    }
+
+    function createRemoveButton(user){
+      const removeBtb = document.createElement('button')
+      removeBtb.innerText = "Remove"
+      removeBtb.onclick = () => removeUser(user)
+      user.appendChild(removeBtb)
+    }
+
+    function removeUser(user){
+      return user.remove()
+    }
+
+    function clearInput(){
+      return getInput().value = ''
+    }
+  </script>
+</body>
+</html>
+
