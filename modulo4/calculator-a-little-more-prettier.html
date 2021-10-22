@@ -78,26 +78,30 @@
       <input class="screen" type="text">
         <div class="calculator-buttons">
           <button class="calc-button is-clear" onclick="limpar()">C</button>
-          <button class="calc-button operator" onclick="enter(this)">÷</button>        
+          <button class="calc-button" onclick="enter(this)">÷</button>        
           <button class="calc-button" onclick="enter(this)">7</button>
           <button class="calc-button" onclick="enter(this)">8</button>
           <button class="calc-button" onclick="enter(this)">9</button>
-          <button class="calc-button operator" onclick="enter(this)">x</button>        
+          <button class="calc-button" onclick="enter(this)">x</button>        
           <button class="calc-button" onclick="enter(this)">4</button>
           <button class="calc-button" onclick="enter(this)">5</button>
           <button class="calc-button" onclick="enter(this)">6</button>
-          <button class="calc-button operator" onclick="enter(this)">-</button>        
+          <button class="calc-button" onclick="enter(this)">-</button>        
           <button class="calc-button" onclick="enter(this)">1</button>
           <button class="calc-button" onclick="enter(this)">2</button>
           <button class="calc-button" onclick="enter(this)">3</button>
-          <button class="calc-button operator" onclick="enter(this)">&plus;</button>        
+          <button class="calc-button" onclick="enter(this)">&plus;</button>        
           <button class="calc-button is-zero" onclick="enter(this)">0</button>
           <button class="calc-button is-equals" onclick="equals()">&equals;</button>
         </div>
         <script>
              function enter(element) {
               const inputText = calcScreen()
-              inputText.value += element.innerHTML
+              if(isNaN(+(element.innerHTML))){
+                inputText.value += ' ' + element.innerHTML + ' '
+              } else{
+                inputText.value += element.innerHTML
+              }
               }
 
               function limpar() {
@@ -106,10 +110,20 @@
               }
 
               function equals() {
-                const operator = chooseOperator()
                 let inputText = calcScreen()
-                let numbers = inputText.value.split(operator)
-                const result = calculate(numbers[0], numbers[1], operator).toString()
+                const elements = inputText.value.split(' ')
+                let result = 0
+                for(const index in elements){
+                  if(['+', '-', 'x', '÷'].includes(elements[index])){
+                    if(result === 0){
+                      result = calculate(elements[+(index) -1], elements[+(index) + 1], elements[index])
+                      console.log(result)
+                    } else {
+                      result = calculate(result, elements[+(index) + 1], elements[index])
+                      console.log(result)
+                    }
+                  }
+                }
                 inputText.value = result
               }
 
@@ -117,29 +131,15 @@
                 return document.querySelector('.screen')
               }
 
-              function getSelectedOperator() {
-                let opBtb = calcScreen().value.split('')
-                let selectedOperator = opBtb.filter(op => ['+', '-', 'x', '÷'].includes(op))[0]
-                return selectedOperator
-              }
-
               function calculate(num1, num2, operator) {
                 return operators[operator](+num1, +num2)
-              }
-
-              function equals() {
-                const operator = getSelectedOperator()
-                let inputText = calcScreen()
-                let numbers = inputText.value.split(operator)
-                const result = calculate(numbers[0], numbers[1], operator).toString()
-                inputText.value = result
               }
 
               let operators = {
                 '+': (n1, n2) => n1 + n2,
                 '-': (n1, n2) => n1 - n2,
                 'x': (n1, n2) => n1 * n2,
-                '÷': (n1, n2) => n1 / n2
+                '÷': (n1, n2) => n2 != 0 ? n1 / n2 : 'Not possible to divide by 0'
               }
         </script>
   </body>
