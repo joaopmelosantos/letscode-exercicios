@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <script src="changeTotal.js"></script>
+  <script src="inputHandler.js"></script> -->
+  <title>Modal</title>
+  <style>
+    body {
+      background: #909090;
+    }
+    .modal {
+      background: #e6e6e6;
+      box-shadow: 5px 5px 30px rgb(0 0 0 / 10%);
+      box-sizing: border-box;
+      width: 400px;
+      height: auto;
+      opacity: 1;
+      padding: 35px;
+      border: 10px solid #333;
+      position: fixed;
+      transition: .15s all ease;
+      top: calc(50% - 142px);
+      left: calc(50% - 200px);
+    }
+
+    .modal form{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      gap: 10px;
+    }
+
+    .modal form input{
+      grid-column: 1/3;
+      border: 3px solid #333;
+      padding: 10px;
+      border-radius: 50px;
+    }
+
+    button{
+       padding: 10px;
+       border-radius: 15px;
+       background: #333;
+       color: white;
+       border: 3px solid #333;
+       transition: all  0.5s;
+    }    
+
+    button:hover{
+      background: white;
+      box-shadow: 0px 3px #333;
+      color: #333;
+      border: 3px solid #333;
+    }
+
+    button:active{
+      box-shadow: 0px 1.5px #333;
+      transform: translateY(1.5px)
+    }
+    
+    .modal:not(.--is-open) {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(.6);
+    }
+  </style>
+</head>
+<body>
+  <button name="open-modal" type="button">Abrir modal</button>
+  <div class="modal">
+    <form>
+      <!-- <input type="email" required placeholder="Digite seu email"/> -->
+      <button type="submit">Ok</button>
+      <button type="button" onclick="letsModal.cancel()">Cancelar</button> 
+    </form>
+  </div>
+  <script>
+    const btnOpenModal = document.querySelector('button[name="open-modal"]')
+
+    btnOpenModal.onclick = function () {
+      letsModal.open({
+        fields: {
+          'name': 'text',
+          'email': 'email',
+          'age': 'number'
+        },
+        fail: () => {
+          console.log('Cliente cancelou!')
+        },
+        success: field => {
+              console.log(`${field.placeholder}: ${field.value}`)
+        }
+      })
+    }
+    
+    const letsModal = (function () {
+
+      let _failFn;
+      let _successFn;
+      let _modalFields
+
+      const _CLASS_OPEN = '--is-open'
+
+      const _modal = document.querySelector('.modal')
+      const _form = document.querySelector('.modal form')
+      const _button = document.querySelector('.modal form button[type="submit"]')
+      // const _input = document.querySelector('.modal form input')
+
+      function _resetForm () {
+        _form.reset();
+      }
+
+      function _removeInputs(){
+        const inputs = document.querySelectorAll('form input')
+        inputs.forEach( input => {
+          input.remove()
+        })
+      }
+
+      function close () {
+        _modal.classList.remove(_CLASS_OPEN)
+        _removeInputs()
+      }
+
+      function cancel () {
+        _failFn()
+        close()
+      }
+
+      function open (settings) {
+        _modal.classList.add(_CLASS_OPEN)
+
+        _modalFields = settings.fields
+        
+        if(!document.querySelector('input')){
+        for(const prop in _modalFields){
+          const _input = document.createElement('input')
+          _input.placeholder = prop.charAt(0).toUpperCase() + prop.slice(1)
+          _input.type = _modalFields[prop]
+          _input.name = prop
+          _input.required = true
+          _form.insertBefore(_input, _button)
+        }
+       }
+
+        if (settings.fail) {
+          _failFn = settings.fail
+        }
+
+        if (settings.success) {
+          _successFn = settings.success
+        }
+
+        _form.onsubmit = function(event) {
+          const _fields = document.querySelectorAll('input')
+          event.preventDefault()
+          for(const field of _fields){
+            _successFn(field)
+          }
+          close()
+          _resetForm()
+        }
+      }
+
+      return {
+        cancel,
+        close,
+        open
+      }
+    })()
+
+  </script>
+</body>
+
+</html>
