@@ -45,16 +45,12 @@
     function createRemoveButton(user){
       const removeBtb = document.createElement('button')
       removeBtb.innerText = "Remove"
-      removeBtb.onclick = () => removeUser(user)
+      removeBtb.onclick = () => user.remove()
       user.appendChild(removeBtb)
     }
 
-    function removeUser(user){
-      return user.remove()
-    }
-
     function clearInput(){
-      return getInput().value = ''
+      return form.reset()
     }
   </script>
 </body>
