@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Desafio Promises</title>
+    <title>Promisses</title>
     <style>
       * {
         margin: 0;
@@ -43,15 +43,14 @@
 
       .list-container {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         margin: 20px 0;
         flex-wrap: wrap;
         gap: 10px;
       }
 
-      .list {
+      .list-container > div {
         display: flex;
-        border: 1px solid black;
         max-width: 150px;
       }
 
@@ -80,7 +79,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>Desafio Promises (João Paulo Melo)</h1>
+      <h1>Desafio Promisses</h1>
       <button id="gerar-lista">Gerar Listas</button>
       <div class="list-container"></div>
       <script src="script.js"></script>
