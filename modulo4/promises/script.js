@@ -14,19 +14,19 @@ function createNewArray() {
 
 const createList1 = () =>
   new Promise(resolve => {
-    setTimeout(resolve, getRandomNumber(1000, 3000), {
+    setTimeout(resolve, getRandomNumber(500, 1500), {
       List1: createNewArray()
     })
   })
 const createList2 = () =>
   new Promise(resolve => {
-    setTimeout(resolve, getRandomNumber(1000, 3000), {
+    setTimeout(resolve, getRandomNumber(500, 1500), {
       List2: createNewArray()
     })
   })
 const createList3 = () =>
   new Promise(resolve => {
-    setTimeout(resolve, getRandomNumber(1000, 3000), {
+    setTimeout(resolve, getRandomNumber(500, 1500), {
       List3: createNewArray()
     })
   })
