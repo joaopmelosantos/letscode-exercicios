@@ -14,19 +14,19 @@ function createNewArray() {
 
 const createList1 = () =>
   new Promise(resolve => {
-    setTimeout(resolve, getRandomNumber(1000, 5000), {
+    setTimeout(resolve, getRandomNumber(1000, 3000), {
       List1: createNewArray()
     })
   })
 const createList2 = () =>
   new Promise(resolve => {
-    setTimeout(resolve, getRandomNumber(1000, 5000), {
+    setTimeout(resolve, getRandomNumber(1000, 3000), {
       List2: createNewArray()
     })
   })
 const createList3 = () =>
   new Promise(resolve => {
-    setTimeout(resolve, getRandomNumber(1000, 5000), {
+    setTimeout(resolve, getRandomNumber(1000, 3000), {
       List3: createNewArray()
     })
   })
@@ -72,7 +72,7 @@ button.onclick = () => {
   createLists()
     .then(() => {
       loading.textContent = 'Lista Gerada!'
-      setTimeout(() => loading.remove(), 2000)
+      setTimeout(() => loading.remove(), 1000)
     })
     .catch(message => (loading.textContent = 'Error: ' + message))
 }
