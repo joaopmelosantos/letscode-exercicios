@@ -69,8 +69,10 @@ button.onclick = () => {
   const loading = document.createElement('span')
   loading.textContent = 'Gerando Lista...'
   container.insertBefore(loading, divContainer)
-  createLists().then(() => {
-    loading.textContent = 'Lista Gerada!'
-    setTimeout(() => loading.remove(), 1000)
-  })
+  createLists()
+    .then(() => {
+      loading.textContent = 'Lista Gerada!'
+      setTimeout(() => loading.remove(), 2000)
+    })
+    .catch(message => (loading.textContent = 'Error: ' + message))
 }
