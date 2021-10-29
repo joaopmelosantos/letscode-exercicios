@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promisses</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        position: relative;
+        left: calc(50% - 600px);
+        padding: 20px;
+      }
+
+      h1 {
+        padding: 10px 0;
+      }
+
+      button {
+        border: none;
+        padding: 10px;
+        box-shadow: 0 5px blueviolet;
+        transition: all 0.25s ease;
+      }
+
+      button:active {
+        box-shadow: 0 2.5px blueviolet;
+        transform: translateY(2.5px);
+      }
+
+      .list-container {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .list {
+        display: flex;
+        border: 1px solid black;
+        max-width: 150px;
+      }
+
+      ul {
+        list-style: none;
+        color: white;
+        text-align: center;
+        padding-bottom: 10px;
+        max-width: 50px;
+      }
+
+      p {
+        padding: 10px;
+        border-bottom: 1px solid white;
+        margin-bottom: 10px;
+      }
+
+      ul:nth-child(odd) {
+        background: grey;
+      }
+
+      ul:nth-child(even) {
+        background: blueviolet;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Desafio Promisses</h1>
+      <button id="gerar-lista">Gerar Listas</button>
+      <div class="list-container"></div>
+      <script src="script.js"></script>
+    </div>
+  </body>
+</html>
