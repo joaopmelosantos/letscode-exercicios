@@ -13,47 +13,64 @@ function createNewArray() {
 }
 
 const createList1 = () =>
-  new Promise((resolve, reject) => {
-    resolve({ List1: createNewArray() })
+  new Promise(resolve => {
+    setTimeout(resolve, getRandomNumber(1000, 5000), {
+      List1: createNewArray()
+    })
   })
 const createList2 = () =>
-  new Promise((resolve, reject) => {
-    resolve({ List2: createNewArray() })
+  new Promise(resolve => {
+    setTimeout(resolve, getRandomNumber(1000, 5000), {
+      List2: createNewArray()
+    })
   })
 const createList3 = () =>
-  new Promise((resolve, reject) => {
-    resolve({ List3: createNewArray() })
+  new Promise(resolve => {
+    setTimeout(resolve, getRandomNumber(1000, 5000), {
+      List3: createNewArray()
+    })
   })
 
 const button = document.querySelector('#gerar-lista')
 const divContainer = document.querySelector('div.list-container')
+let listsContainerNumber = 1
 
 const createLists = async () => {
+  const ulContainer = document.createElement('div')
+  ulContainer.classList.add('list' + listsContainerNumber)
+  divContainer.appendChild(ulContainer)
   const list1 = await createList1()
+  fillListsContainer(list1)
   const list2 = await createList2()
+  fillListsContainer(list2)
   const list3 = await createList3()
-  const lists = [list1, list2, list3]
-  return lists
+  fillListsContainer(list3)
+  listsContainerNumber++
+}
+
+const fillListsContainer = list => {
+  const ul = document.createElement('ul')
+  const ulContainer = document.querySelector(`.list${listsContainerNumber}`)
+  ulContainer.appendChild(ul)
+  for (prop in list) {
+    const p = document.createElement('p')
+    p.textContent = prop
+    ul.appendChild(p)
+    for (number of list[prop]) {
+      const li = document.createElement('li')
+      li.textContent = number
+      ul.appendChild(li)
+    }
+  }
 }
 
 button.onclick = () => {
-  createLists().then(lists => {
-    const ulContainer = document.createElement('div')
-    ulContainer.classList.add('list')
-    divContainer.appendChild(ulContainer)
-    for (object of lists) {
-      for (index in object) {
-        const ul = document.createElement('ul')
-        ulContainer.appendChild(ul)
-        const p = document.createElement('p')
-        p.textContent = index
-        ul.appendChild(p)
-        for (const value of object[index]) {
-          const li = document.createElement('li')
-          li.textContent = value
-          ul.appendChild(li)
-        }
-      }
-    }
+  const container = document.querySelector('.container')
+  const loading = document.createElement('span')
+  loading.textContent = 'Gerando Lista...'
+  container.insertBefore(loading, divContainer)
+  createLists().then(() => {
+    loading.textContent = 'Lista Gerada!'
+    setTimeout(() => loading.remove(), 1000)
   })
 }
