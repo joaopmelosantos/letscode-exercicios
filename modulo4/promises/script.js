@@ -14,19 +14,19 @@ function createNewArray() {
 
 const createList1 = () =>
   new Promise(resolve => {
-    setTimeout(resolve, getRandomNumber(500, 1500), {
+    setTimeout(resolve, getRandomNumber(1000, 2000), {
       List1: createNewArray()
     })
   })
 const createList2 = () =>
   new Promise(resolve => {
-    setTimeout(resolve, getRandomNumber(500, 1500), {
+    setTimeout(resolve, getRandomNumber(1000, 2000), {
       List2: createNewArray()
     })
   })
 const createList3 = () =>
   new Promise(resolve => {
-    setTimeout(resolve, getRandomNumber(500, 1500), {
+    setTimeout(resolve, getRandomNumber(1000, 2000), {
       List3: createNewArray()
     })
   })
@@ -36,9 +36,7 @@ const divContainer = document.querySelector('div.list-container')
 let listsContainerNumber = 1
 
 const createLists = async () => {
-  const ulContainer = document.createElement('div')
-  ulContainer.classList.add('list' + listsContainerNumber)
-  divContainer.appendChild(ulContainer)
+  createListsContainer()
   const list1 = await createList1()
   fillListsContainer(list1)
   const list2 = await createList2()
@@ -46,6 +44,12 @@ const createLists = async () => {
   const list3 = await createList3()
   fillListsContainer(list3)
   listsContainerNumber++
+}
+
+const createListsContainer = () => {
+  const ulContainer = document.createElement('div')
+  ulContainer.classList.add('list' + listsContainerNumber)
+  divContainer.appendChild(ulContainer)
 }
 
 const fillListsContainer = list => {
